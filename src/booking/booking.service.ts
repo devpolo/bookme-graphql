@@ -12,15 +12,16 @@ export class BookingService {
   constructor(@InjectRepository(Booking) private bookingRepository: Repository<Booking>) {}
 
   create(createBookingInput: CreateBookingInput) {
-    return 'This action adds a new booking';
+    const newBooking = this.bookingRepository.create(createBookingInput);
+    return this.bookingRepository.save(newBooking);
   }
 
   findAll() {
-    return `This action returns all booking`;
+    return this.bookingRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} booking`;
+    this.bookingRepository.findOneOrFail(id);
   }
 
   update(id: number, updateBookingInput: UpdateBookingInput) {
