@@ -9,6 +9,7 @@ type Room {
 
 type Query {
   rooms: [Room!]!
+  getRoomById(id: String!): Room!
 }
 
 type Mutation {
