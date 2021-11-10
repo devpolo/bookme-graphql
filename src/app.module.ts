@@ -8,7 +8,7 @@ import { join } from 'path';
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
 
-import { RoomsModule } from './rooms/rooms.module';
+import { RoomsModule } from './room/room.module';
 import { BookingModule } from './booking/booking.module';
 
 @Module({

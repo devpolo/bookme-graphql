@@ -7,7 +7,7 @@ import { UpdateBookingInput } from './dto/update-booking.input';
 
 import { Booking } from './entities/booking.entity';
 
-import { RoomsService } from 'src/rooms/rooms.service';
+import { RoomsService } from 'src/room/room.service';
 
 @Injectable()
 export class BookingService {

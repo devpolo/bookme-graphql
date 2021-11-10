@@ -7,7 +7,7 @@ import { Booking } from './entities/booking.entity';
 import { CreateBookingInput } from './dto/create-booking.input';
 import { UpdateBookingInput } from './dto/update-booking.input';
 
-import { Room } from 'src/rooms/entities/room.entity';
+import { Room } from 'src/room/entities/room.entity';
 
 @Resolver(() => Booking)
 export class BookingResolver {

@@ -6,7 +6,7 @@ import { BookingResolver } from './booking.resolver';
 
 import { Booking } from './entities/booking.entity';
 
-import { RoomsModule } from 'src/rooms/rooms.module';
+import { RoomsModule } from 'src/room/room.module';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Booking]), RoomsModule],
