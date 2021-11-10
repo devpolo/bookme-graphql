@@ -9,6 +9,7 @@ import { AppService } from './app.service';
 import { AppController } from './app.controller';
 
 import { RoomsModule } from './rooms/rooms.module';
+import { BookingModule } from './booking/booking.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { RoomsModule } from './rooms/rooms.module';
       synchronize: true,
     }),
     RoomsModule,
+    BookingModule,
   ],
   controllers: [AppController],
   providers: [AppService],

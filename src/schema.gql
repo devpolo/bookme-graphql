@@ -7,15 +7,35 @@ type Room {
   name: String!
 }
 
+type Booking {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 type Query {
   rooms: [Room!]!
   getRoomById(id: String!): Room!
+  booking(id: Int!): Booking!
 }
 
 type Mutation {
   createRoom(createRoomInput: CreateRoomInput!): Room!
+  createBooking(createBookingInput: CreateBookingInput!): Booking!
+  updateBooking(updateBookingInput: UpdateBookingInput!): Booking!
+  removeBooking(id: Int!): Booking!
 }
 
 input CreateRoomInput {
   name: String!
+}
+
+input CreateBookingInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateBookingInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }
