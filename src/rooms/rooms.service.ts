@@ -2,9 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Repository } from 'typeorm';
+
 import { CreateRoomInput } from './dto/create-room.input';
 
-import { Room } from './room.entity';
+import { Room } from './entities/room.entity';
 
 @Injectable()
 export class RoomsService {

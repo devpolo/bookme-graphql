@@ -1,32 +1,31 @@
-import { Resolver, Query, Mutation, Args, Int, Parent, ResolveField } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Parent, ResolveField } from '@nestjs/graphql';
+
 import { BookingService } from './booking.service';
+
 import { Booking } from './entities/booking.entity';
+
 import { CreateBookingInput } from './dto/create-booking.input';
 import { UpdateBookingInput } from './dto/update-booking.input';
-import { Room } from 'src/rooms/room.entity';
+
+import { Room } from 'src/rooms/entities/room.entity';
 
 @Resolver(() => Booking)
 export class BookingResolver {
   constructor(private readonly bookingService: BookingService) {}
 
-  @Mutation(() => Booking)
-  createBooking(@Args('createBookingInput') createBookingInput: CreateBookingInput) {
-    return this.bookingService.create(createBookingInput);
-  }
-
-  @Query(() => [Booking], { name: 'booking' })
-  findAll() {
+  @Query(() => [Booking])
+  bookings() {
     return this.bookingService.findAll();
   }
 
-  // @Query(() => Booking, { name: 'booking' })
-  // findOne(@Args('id', { type: () => String }) id: number) {
-  //   return this.bookingService.findOne(id);
-  // }
+  @Query(() => [Booking])
+  booking(@Args('id', { type: () => String }) id: number) {
+    return this.bookingService.findOne(id);
+  }
 
-  @ResolveField((returns) => Room)
-  room(@Parent() booking: Booking) {
-    return this.bookingService.getRoom(booking.roomId);
+  @Mutation(() => Booking)
+  createBooking(@Args('createBookingInput') createBookingInput: CreateBookingInput) {
+    return this.bookingService.create(createBookingInput);
   }
 
   @Mutation(() => Booking)
@@ -37,5 +36,10 @@ export class BookingResolver {
   @Mutation(() => Booking)
   removeBooking(@Args('id', { type: () => String }) id: number) {
     return this.bookingService.remove(id);
+  }
+
+  @ResolveField((returns) => Room)
+  room(@Parent() booking: Booking) {
+    return this.bookingService.getRoom(booking.roomId);
   }
 }

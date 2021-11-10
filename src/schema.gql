@@ -28,8 +28,9 @@ type Room {
 
 type Query {
   rooms: [Room!]!
-  getRoomById(id: String!): Room!
-  booking: [Booking!]!
+  room(id: String!): Room!
+  bookings: [Booking!]!
+  booking(id: String!): [Booking!]!
 }
 
 type Mutation {

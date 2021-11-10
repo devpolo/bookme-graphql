@@ -9,7 +9,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { Room } from 'src/rooms/room.entity';
+import { Room } from 'src/rooms/entities/room.entity';
 
 @Entity()
 @ObjectType()

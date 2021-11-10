@@ -4,7 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { RoomsService } from './rooms.service';
 import { RoomsResolver } from './rooms.resolver';
 
-import { Room } from './room.entity';
+import { Room } from './entities/room.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Room])],
