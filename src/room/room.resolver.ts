@@ -15,7 +15,7 @@ export class RoomsResolver {
   }
 
   @Query((returns) => Room)
-  async room(@Args('id', { type: () => String }) id: string): Promise<Room> {
+  async roomById(@Args('id', { type: () => String }) id: string): Promise<Room> {
     return this.roomsService.findOne(id);
   }
 
