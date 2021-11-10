@@ -24,7 +24,7 @@ export class Room {
 
   @OneToMany(() => Booking, (booking) => booking.room)
   @Field((type) => [Booking], { nullable: true })
-  bookings?: Booking;
+  bookings: Booking[];
 
   @Field()
   @CreateDateColumn({ type: 'timestamp' })

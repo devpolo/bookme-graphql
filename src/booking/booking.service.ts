@@ -25,11 +25,11 @@ export class BookingService {
     return this.bookingRepository.find();
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     this.bookingRepository.findOneOrFail(id);
   }
 
-  update(id: number, updateBookingInput: UpdateBookingInput) {
+  update(id: string, updateBookingInput: UpdateBookingInput) {
     return `This action updates a #${id} booking`;
   }
 

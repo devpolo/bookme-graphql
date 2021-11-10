@@ -56,5 +56,5 @@ input UpdateBookingInput {
   start: DateTime
   end: DateTime
   roomId: String
-  id: Int!
+  id: String!
 }

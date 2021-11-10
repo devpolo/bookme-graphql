@@ -12,11 +12,11 @@ export class RoomsService {
   constructor(@InjectRepository(Room) private roomRepository: Repository<Room>) {}
 
   async findAll(): Promise<Room[]> {
-    return this.roomRepository.find();
+    return this.roomRepository.find({ relations: ['bookings'] });
   }
 
   async findOne(id: string): Promise<Room> {
-    return this.roomRepository.findOneOrFail(id);
+    return this.roomRepository.findOneOrFail(id, { relations: ['bookings'] });
   }
 
   async createRoom(createRoomInput: CreateRoomInput): Promise<Room> {

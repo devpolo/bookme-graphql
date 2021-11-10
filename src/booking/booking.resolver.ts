@@ -19,7 +19,7 @@ export class BookingResolver {
   }
 
   @Query(() => [Booking])
-  bookingById(@Args('id', { type: () => String }) id: number) {
+  bookingById(@Args('id', { type: () => String }) id: string) {
     return this.bookingService.findOne(id);
   }
 
