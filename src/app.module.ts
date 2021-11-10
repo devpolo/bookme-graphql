@@ -18,7 +18,7 @@ import { BookingModule } from './booking/booking.module';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
     TypeOrmModule.forRoot({
-      type: 'mongodb',
+      type: 'postgres',
       url: process.env.HEROKU_POSTGRESQL_AQUA_URL,
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
