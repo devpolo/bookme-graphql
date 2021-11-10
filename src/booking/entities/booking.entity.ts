@@ -3,10 +3,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   ObjectID,
   ObjectIdColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+import { Room } from 'src/rooms/room.entity';
 
 @Entity()
 @ObjectType()
@@ -26,6 +29,14 @@ export class Booking {
   @Column()
   @Field()
   end: Date;
+
+  @Column()
+  @Field()
+  roomId: string;
+
+  @ManyToOne(() => Room, (room) => room.bookings)
+  @Field((type) => Room)
+  room: Room;
 
   @Field()
   @CreateDateColumn({ type: 'timestamp' })

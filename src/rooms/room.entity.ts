@@ -5,8 +5,11 @@ import {
   Entity,
   ObjectID,
   ObjectIdColumn,
+  OneToMany,
   UpdateDateColumn,
 } from 'typeorm';
+
+import { Booking } from 'src/booking/entities/booking.entity';
 
 @Entity()
 @ObjectType()
@@ -18,6 +21,10 @@ export class Room {
   @Column()
   @Field()
   name: string;
+
+  @OneToMany(() => Booking, (booking) => booking.room)
+  @Field((type) => [Booking], { nullable: true })
+  bookings?: Booking;
 
   @Field()
   @CreateDateColumn({ type: 'timestamp' })
