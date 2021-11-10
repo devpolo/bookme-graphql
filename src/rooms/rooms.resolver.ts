@@ -1,4 +1,14 @@
-import { Resolver } from '@nestjs/graphql';
+import { Resolver, Query } from '@nestjs/graphql';
 
-@Resolver()
-export class RoomsResolver {}
+import { RoomsService } from './rooms.service';
+import { Room } from './room.entity';
+
+@Resolver((of) => Room)
+export class RoomsResolver {
+  constructor(private roomsService: RoomsService) {}
+
+  @Query((returns) => [Room])
+  async rooms(): Promise<Room[]> {
+    return this.roomsService.findAll();
+  }
+}
