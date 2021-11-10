@@ -16,6 +16,8 @@ import { BookingModule } from './booking/booking.module';
     ConfigModule.forRoot(),
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      playground: true, // for for interview purpose. should be false in production
+      debug: true, // for for interview purpose. should be false in production
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
