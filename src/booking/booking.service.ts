@@ -25,15 +25,15 @@ export class BookingService {
     return this.bookingRepository.find();
   }
 
-  findOne(id: string) {
+  findOne(id: number) {
     this.bookingRepository.findOneOrFail(id);
   }
 
-  update(id: string, updateBookingInput: UpdateBookingInput) {
+  update(id: number, updateBookingInput: UpdateBookingInput) {
     return `This action updates a #${id} booking`;
   }
 
-  remove(id: string) {
+  remove(id: number) {
     return this.bookingRepository.delete(id);
   }
 

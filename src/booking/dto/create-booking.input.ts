@@ -12,5 +12,5 @@ export class CreateBookingInput {
   end: Date;
 
   @Field()
-  roomId: string;
+  roomId: number;
 }
