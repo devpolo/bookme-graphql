@@ -22,6 +22,7 @@ import { BookingModule } from './booking/booking.module';
       url: process.env.DATABASE_URL,
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
+      ssl: { rejectUnauthorized: false },
     }),
     RoomsModule,
     BookingModule,
