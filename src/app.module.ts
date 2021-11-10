@@ -19,7 +19,7 @@ import { BookingModule } from './booking/booking.module';
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      url: process.env.HEROKU_POSTGRESQL_AQUA_URL,
+      url: process.env.DATABASE_URL,
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),

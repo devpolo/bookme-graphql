@@ -1,11 +1,10 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
 import {
   Column,
   CreateDateColumn,
   Entity,
   ManyToOne,
-  ObjectID,
-  ObjectIdColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
@@ -14,9 +13,9 @@ import { Room } from 'src/room/entities/room.entity';
 @Entity()
 @ObjectType()
 export class Booking {
-  @ObjectIdColumn()
-  @Field((type) => ID)
-  id: ObjectID;
+  @PrimaryGeneratedColumn()
+  @Field((type) => Int)
+  id: number;
 
   @Column()
   @Field()
