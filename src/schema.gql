@@ -16,7 +16,9 @@ scalar DateTime
 
 type Booking {
   id: ID!
-  name: String!
+  title: String!
+  start: DateTime!
+  end: DateTime!
   createdAt: DateTime!
   updatedAt: DateTime
 }

@@ -17,7 +17,15 @@ export class Booking {
 
   @Column()
   @Field()
-  name: string;
+  title: string;
+
+  @Column()
+  @Field()
+  start: Date;
+
+  @Column()
+  @Field()
+  end: Date;
 
   @Field()
   @CreateDateColumn({ type: 'timestamp' })
