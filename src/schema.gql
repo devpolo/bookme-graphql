@@ -37,7 +37,7 @@ type Mutation {
   createRoom(createRoomInput: CreateRoomInput!): Room!
   createBooking(createBookingInput: CreateBookingInput!): Booking!
   updateBooking(updateBookingInput: UpdateBookingInput!): Booking!
-  removeBooking(id: String!): Booking!
+  removeBooking(id: String!): Boolean!
 }
 
 input CreateRoomInput {

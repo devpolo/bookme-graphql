@@ -33,9 +33,9 @@ export class BookingResolver {
     return this.bookingService.update(updateBookingInput.id, updateBookingInput);
   }
 
-  @Mutation(() => Booking)
-  removeBooking(@Args('id', { type: () => String }) id: number) {
-    return this.bookingService.remove(id);
+  @Mutation(() => Boolean)
+  removeBooking(@Args('id', { type: () => String }) id: string) {
+    return this.bookingService.remove(id) ? true : false;
   }
 
   @ResolveField((returns) => Room)

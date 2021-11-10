@@ -33,8 +33,8 @@ export class BookingService {
     return `This action updates a #${id} booking`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} booking`;
+  remove(id: string) {
+    return this.bookingRepository.delete(id);
   }
 
   getRoom(bookingId: string) {
