@@ -3,10 +3,18 @@
 # ------------------------------------------------------
 
 type Room {
-  id: Int!
+  id: ID!
   name: String!
 }
 
 type Query {
   rooms: [Room!]!
+}
+
+type Mutation {
+  createRoom(createRoomInput: CreateRoomInput!): Room!
+}
+
+input CreateRoomInput {
+  name: String!
 }
