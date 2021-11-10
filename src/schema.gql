@@ -44,12 +44,16 @@ input CreateRoomInput {
 }
 
 input CreateBookingInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  title: String!
+  start: DateTime!
+  end: DateTime!
+  roomId: String!
 }
 
 input UpdateBookingInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  title: String
+  start: DateTime
+  end: DateTime
+  roomId: String
   id: Int!
 }
