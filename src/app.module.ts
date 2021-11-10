@@ -18,13 +18,14 @@ import { BookingModule } from './booking/booking.module';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       playground: true, // for interview purpose. should be false in production
       debug: true, // for interview purpose. should be false in production
+      introspection: true, // for interview purpose. should be false in production
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       url: process.env.DATABASE_URL,
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
-      ssl: { rejectUnauthorized: false },
+      ssl: { rejectUnauthorized: false }, // for interview purpose
     }),
     RoomsModule,
     BookingModule,
