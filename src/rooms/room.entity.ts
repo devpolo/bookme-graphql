@@ -1,5 +1,12 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, ObjectID, ObjectIdColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ObjectID,
+  ObjectIdColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 @ObjectType()
@@ -11,4 +18,12 @@ export class Room {
   @Column()
   @Field()
   name: string;
+
+  @Field()
+  @CreateDateColumn({ type: 'timestamp' })
+  createdAt: Date;
+
+  @Field({ nullable: true })
+  @UpdateDateColumn({ type: 'timestamp', nullable: true })
+  updatedAt?: Date;
 }
