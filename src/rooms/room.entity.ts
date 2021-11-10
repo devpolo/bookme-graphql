@@ -1,12 +1,12 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Column, Entity, ObjectID, ObjectIdColumn } from 'typeorm';
 
 @Entity()
 @ObjectType()
 export class Room {
-  @PrimaryGeneratedColumn()
-  @Field((type) => Int)
-  id: number;
+  @ObjectIdColumn()
+  @Field((type) => ID)
+  id: ObjectID;
 
   @Column()
   @Field()
