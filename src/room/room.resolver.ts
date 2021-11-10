@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 
 import { RoomsService } from './room.service';
 import { Room } from './entities/room.entity';
@@ -15,7 +15,7 @@ export class RoomsResolver {
   }
 
   @Query((returns) => Room)
-  async roomById(@Args('id', { type: () => String }) id: string): Promise<Room> {
+  async roomById(@Args('id', { type: () => Int }) id: number): Promise<Room> {
     return this.roomsService.findOne(id);
   }
 

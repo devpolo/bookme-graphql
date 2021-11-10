@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Parent, ResolveField } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Parent, ResolveField, Int } from '@nestjs/graphql';
 
 import { BookingService } from './booking.service';
 
@@ -19,7 +19,7 @@ export class BookingResolver {
   }
 
   @Query(() => [Booking])
-  bookingById(@Args('id', { type: () => String }) id: string) {
+  bookingById(@Args('id', { type: () => Int }) id: number) {
     return this.bookingService.findOne(id);
   }
 
@@ -34,7 +34,7 @@ export class BookingResolver {
   }
 
   @Mutation(() => Boolean)
-  removeBooking(@Args('id', { type: () => String }) id: string) {
+  removeBooking(@Args('id', { type: () => Int }) id: number) {
     return this.bookingService.remove(id) ? true : false;
   }
 

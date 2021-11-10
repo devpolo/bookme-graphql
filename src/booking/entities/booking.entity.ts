@@ -1,12 +1,5 @@
-import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import { Room } from 'src/room/entities/room.entity';
 
@@ -30,18 +23,10 @@ export class Booking {
   end: Date;
 
   @Column()
-  @Field()
-  roomId: string;
+  @Field((type) => Int)
+  roomId: number;
 
   @ManyToOne(() => Room, (room) => room.bookings)
   @Field((type) => Room)
   room: Room;
-
-  @Field()
-  @CreateDateColumn({ type: 'timestamp' })
-  createdAt: Date;
-
-  @Field({ nullable: true })
-  @UpdateDateColumn({ type: 'timestamp', nullable: true })
-  updatedAt?: Date;
 }

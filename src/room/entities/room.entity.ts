@@ -1,12 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 import { Booking } from 'src/booking/entities/booking.entity';
 
@@ -24,12 +17,4 @@ export class Room {
   @OneToMany(() => Booking, (booking) => booking.room)
   @Field((type) => [Booking], { nullable: true })
   bookings: Booking[];
-
-  @Field()
-  @CreateDateColumn({ type: 'timestamp' })
-  createdAt: Date;
-
-  @Field({ nullable: true })
-  @UpdateDateColumn({ type: 'timestamp', nullable: true })
-  updatedAt?: Date;
 }

@@ -37,7 +37,7 @@ export class BookingService {
     return this.bookingRepository.delete(id);
   }
 
-  getRoom(bookingId: string) {
+  getRoom(bookingId: number) {
     return this.roomsService.findOne(bookingId);
   }
 }

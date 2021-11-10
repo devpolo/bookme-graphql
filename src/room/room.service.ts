@@ -15,7 +15,7 @@ export class RoomsService {
     return this.roomRepository.find({ relations: ['bookings'] });
   }
 
-  async findOne(id: string): Promise<Room> {
+  async findOne(id: number): Promise<Room> {
     return this.roomRepository.findOneOrFail(id, { relations: ['bookings'] });
   }
 
