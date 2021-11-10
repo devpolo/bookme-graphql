@@ -30,7 +30,7 @@
     "apollo-server-express": "^3.5.0",
     "graphql": "^15.7.2",
     "graphql-tools": "^8.2.0",
-    "mongodb": "^4.1.4",
+    "mongodb": "^3.7.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
