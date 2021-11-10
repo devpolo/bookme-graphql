@@ -29,14 +29,14 @@ type Room {
 type Query {
   rooms: [Room!]!
   getRoomById(id: String!): Room!
-  booking(id: Int!): Booking!
+  booking: [Booking!]!
 }
 
 type Mutation {
   createRoom(createRoomInput: CreateRoomInput!): Room!
   createBooking(createBookingInput: CreateBookingInput!): Booking!
   updateBooking(updateBookingInput: UpdateBookingInput!): Booking!
-  removeBooking(id: Int!): Booking!
+  removeBooking(id: String!): Booking!
 }
 
 input CreateRoomInput {

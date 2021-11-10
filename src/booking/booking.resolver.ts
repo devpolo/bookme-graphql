@@ -1,8 +1,9 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, Parent, ResolveField } from '@nestjs/graphql';
 import { BookingService } from './booking.service';
 import { Booking } from './entities/booking.entity';
 import { CreateBookingInput } from './dto/create-booking.input';
 import { UpdateBookingInput } from './dto/update-booking.input';
+import { Room } from 'src/rooms/room.entity';
 
 @Resolver(() => Booking)
 export class BookingResolver {
@@ -18,9 +19,14 @@ export class BookingResolver {
     return this.bookingService.findAll();
   }
 
-  @Query(() => Booking, { name: 'booking' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.bookingService.findOne(id);
+  // @Query(() => Booking, { name: 'booking' })
+  // findOne(@Args('id', { type: () => String }) id: number) {
+  //   return this.bookingService.findOne(id);
+  // }
+
+  @ResolveField((returns) => Room)
+  room(@Parent() booking: Booking) {
+    return this.bookingService.getRoom(booking.roomId);
   }
 
   @Mutation(() => Booking)
@@ -29,7 +35,7 @@ export class BookingResolver {
   }
 
   @Mutation(() => Booking)
-  removeBooking(@Args('id', { type: () => Int }) id: number) {
+  removeBooking(@Args('id', { type: () => String }) id: number) {
     return this.bookingService.remove(id);
   }
 }

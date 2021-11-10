@@ -7,9 +7,14 @@ import { UpdateBookingInput } from './dto/update-booking.input';
 
 import { Booking } from './entities/booking.entity';
 
+import { RoomsService } from 'src/rooms/rooms.service';
+
 @Injectable()
 export class BookingService {
-  constructor(@InjectRepository(Booking) private bookingRepository: Repository<Booking>) {}
+  constructor(
+    @InjectRepository(Booking) private bookingRepository: Repository<Booking>,
+    private roomsService: RoomsService,
+  ) {}
 
   create(createBookingInput: CreateBookingInput) {
     const newBooking = this.bookingRepository.create(createBookingInput);
@@ -30,5 +35,9 @@ export class BookingService {
 
   remove(id: number) {
     return `This action removes a #${id} booking`;
+  }
+
+  getRoom(bookingId: string) {
+    return this.roomsService.findOne(bookingId);
   }
 }
