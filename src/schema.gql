@@ -22,11 +22,17 @@ type Room {
   bookings: [Booking!]
 }
 
+type User {
+  id: Int!
+  name: String!
+}
+
 type Query {
   rooms: [Room!]!
   roomById(id: Int!): Room!
   bookings: [Booking!]!
   bookingById(id: Int!): [Booking!]!
+  user(id: Int!): User!
 }
 
 type Mutation {
@@ -35,6 +41,9 @@ type Mutation {
   createBooking(createBookingInput: CreateBookingInput!): Booking!
   updateBooking(updateBookingInput: UpdateBookingInput!): Booking!
   removeBooking(id: Int!): Boolean!
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: Int!): User!
 }
 
 input CreateRoomInput {
@@ -54,4 +63,15 @@ input UpdateBookingInput {
   end: DateTime
   roomId: Float
   id: Float!
+}
+
+input CreateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }
