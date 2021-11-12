@@ -24,4 +24,8 @@ export class RoomsService {
 
     return this.roomRepository.save(newRoom);
   }
+
+  async deleteById(id: number) {
+    this.roomRepository.delete(id);
+  }
 }

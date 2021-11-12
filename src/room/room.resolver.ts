@@ -23,4 +23,15 @@ export class RoomsResolver {
   async createRoom(@Args('createRoomInput') createRoomInput: CreateRoomInput): Promise<Room> {
     return this.roomsService.createRoom(createRoomInput);
   }
+
+  @Mutation((returns) => Boolean)
+  async deleteRoom(@Args('id', { type: () => Int }) id: number): Promise<boolean> {
+    try {
+      await this.roomsService.deleteById(id);
+      return true;
+    } catch (error) {
+      console.log({ error });
+      return false;
+    }
+  }
 }

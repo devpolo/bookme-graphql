@@ -31,6 +31,7 @@ type Query {
 
 type Mutation {
   createRoom(createRoomInput: CreateRoomInput!): Room!
+  deleteRoom(id: Int!): Boolean!
   createBooking(createBookingInput: CreateBookingInput!): Booking!
   updateBooking(updateBookingInput: UpdateBookingInput!): Booking!
   removeBooking(id: Int!): Boolean!

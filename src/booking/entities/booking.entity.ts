@@ -26,7 +26,7 @@ export class Booking {
   @Field((type) => Int)
   roomId: number;
 
-  @ManyToOne(() => Room, (room) => room.bookings)
+  @ManyToOne(() => Room, (room) => room.bookings, { onDelete: 'CASCADE' })
   @Field((type) => Room)
   room: Room;
 }
