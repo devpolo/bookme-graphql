@@ -16,7 +16,7 @@ export class User {
   @Field()
   @Length(2, 30, { message: 'The name must be at least 2 but not longer than 30 characters' })
   @IsNotEmpty({ message: 'The name is required' })
-  name!: string;
+  name: string;
 
   @OneToMany(() => Booking, (booking) => booking.room, { onDelete: 'SET NULL' })
   @Field((type) => [Booking], { nullable: true })
