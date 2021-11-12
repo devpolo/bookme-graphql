@@ -14,7 +14,7 @@ export class Room {
   @Field()
   name: string;
 
-  @OneToMany(() => Booking, (booking) => booking.room, { onDelete: 'SET NULL' })
+  @OneToMany(() => Booking, (booking) => booking.room, { onDelete: 'SET NULL', cascade: false })
   @Field((type) => [Booking], { nullable: true })
   bookings: Booking[];
 }

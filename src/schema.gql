@@ -66,7 +66,7 @@ input UpdateBookingInput {
   start: DateTime
   end: DateTime
   roomId: Float
-  userId: Float
+  userId: Float!
   id: Float!
 }
 

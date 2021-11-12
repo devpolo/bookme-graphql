@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { QueryFailedError, Repository, UpdateValuesMissingError } from 'typeorm';
 
 import { CreateBookingInput } from './dto/create-booking.input';
 import { UpdateBookingInput } from './dto/update-booking.input';
@@ -31,7 +31,25 @@ export class BookingService {
     this.bookingRepository.findOneOrFail(id);
   }
 
-  update(id: number, updateBookingInput: UpdateBookingInput) {
+  async update(id: number, updateBookingInput: UpdateBookingInput) {
+    try {
+      const booking = await this.bookingRepository.findOneOrFail(id);
+
+      if (updateBookingInput.userId === booking.userId) {
+        this.bookingRepository.update(updateBookingInput.userId, updateBookingInput);
+
+        await this.bookingRepository.update(id, {
+          ...updateBookingInput,
+        });
+
+        return this.bookingRepository.findOne(updateBookingInput.userId);
+      } else {
+        throw new UnauthorizedException('Not authorized');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
     return `This action updates a #${id} booking`;
   }
 

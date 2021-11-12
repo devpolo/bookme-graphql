@@ -5,4 +5,7 @@ import { InputType, Field, PartialType } from '@nestjs/graphql';
 export class UpdateBookingInput extends PartialType(CreateBookingInput) {
   @Field()
   id: number;
+
+  @Field()
+  userId: number;
 }
