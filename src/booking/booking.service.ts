@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { QueryFailedError, Repository, UpdateValuesMissingError } from 'typeorm';
+import { Repository } from 'typeorm';
 
 import { CreateBookingInput } from './dto/create-booking.input';
 import { UpdateBookingInput } from './dto/update-booking.input';
@@ -9,6 +9,7 @@ import { Booking } from './entities/booking.entity';
 
 import { RoomsService } from 'src/room/room.service';
 import { UserService } from 'src/user/user.service';
+import { DeleteBookingInput } from './dto/delete-booking.input';
 
 @Injectable()
 export class BookingService {
@@ -49,12 +50,20 @@ export class BookingService {
     } catch (error) {
       console.error(error);
     }
-
-    return `This action updates a #${id} booking`;
   }
 
-  remove(id: number) {
-    return this.bookingRepository.delete(id);
+  async remove(deleteBookingInput: DeleteBookingInput) {
+    try {
+      const booking = await this.bookingRepository.findOneOrFail(deleteBookingInput.id);
+
+      if (deleteBookingInput.userId === booking.userId) {
+        return this.bookingRepository.delete(deleteBookingInput.id);
+      } else {
+        throw new UnauthorizedException('Not authorized');
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   getRoom(bookingId: number) {

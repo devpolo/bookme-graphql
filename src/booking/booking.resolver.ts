@@ -9,6 +9,7 @@ import { UpdateBookingInput } from './dto/update-booking.input';
 
 import { Room } from 'src/room/entities/room.entity';
 import { User } from 'src/user/entities/user.entity';
+import { DeleteBookingInput } from './dto/delete-booking.input';
 
 @Resolver(() => Booking)
 export class BookingResolver {
@@ -35,8 +36,8 @@ export class BookingResolver {
   }
 
   @Mutation(() => Boolean)
-  removeBooking(@Args('id', { type: () => Int }) id: number) {
-    return this.bookingService.remove(id) ? true : false;
+  async removeBooking(@Args('DeleteBookingInput') deleteBookingInput: DeleteBookingInput) {
+    return (await this.bookingService.remove(deleteBookingInput)) ? true : false;
   }
 
   @ResolveField((returns) => Room)

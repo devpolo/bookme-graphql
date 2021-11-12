@@ -43,7 +43,7 @@ type Mutation {
   deleteRoom(id: Int!): Boolean!
   createBooking(createBookingInput: CreateBookingInput!): Booking!
   updateBooking(updateBookingInput: UpdateBookingInput!): Booking!
-  removeBooking(id: Int!): Boolean!
+  removeBooking(DeleteBookingInput: DeleteBookingInput!): Boolean!
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!
@@ -69,6 +69,11 @@ input UpdateBookingInput {
   roomId: Float
   userId: Float!
   id: Float!
+}
+
+input DeleteBookingInput {
+  id: Float!
+  userId: Float!
 }
 
 input CreateUserInput {
