@@ -32,4 +32,9 @@ export class UserResolver {
   removeUser(@Args('id', { type: () => Int }) id: number) {
     return this.userService.remove(id);
   }
+
+  @Mutation(() => User)
+  login(@Args('name', { type: () => String }) name: string) {
+    return this.userService.login(name);
+  }
 }

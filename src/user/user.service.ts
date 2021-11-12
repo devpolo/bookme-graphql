@@ -30,4 +30,14 @@ export class UserService {
   remove(id: number) {
     return `This action removes a #${id} user`;
   }
+
+  async login(name: string) {
+    try {
+      return await this.userRepository.findOneOrFail({ where: { name } });
+    } catch {
+      const newUser = this.userRepository.create({ name });
+
+      return this.userRepository.save(newUser);
+    }
+  }
 }
