@@ -31,6 +31,10 @@ export class Booking {
   @Field((type) => Room)
   room: Room;
 
+  @Column()
+  @Field((type) => Int)
+  userId: number;
+
   @ManyToOne(() => User, (user) => user.bookings, { onDelete: 'CASCADE' })
   @Field((type) => User)
   user: User;

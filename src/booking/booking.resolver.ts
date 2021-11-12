@@ -8,6 +8,7 @@ import { CreateBookingInput } from './dto/create-booking.input';
 import { UpdateBookingInput } from './dto/update-booking.input';
 
 import { Room } from 'src/room/entities/room.entity';
+import { User } from 'src/user/entities/user.entity';
 
 @Resolver(() => Booking)
 export class BookingResolver {
@@ -41,5 +42,10 @@ export class BookingResolver {
   @ResolveField((returns) => Room)
   room(@Parent() booking: Booking) {
     return this.bookingService.getRoom(booking.roomId);
+  }
+
+  @ResolveField((returns) => User)
+  user(@Parent() booking: Booking) {
+    return this.bookingService.getUser(booking.userId);
   }
 }

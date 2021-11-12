@@ -13,4 +13,7 @@ export class CreateBookingInput {
 
   @Field()
   roomId: number;
+
+  @Field()
+  userId: number;
 }

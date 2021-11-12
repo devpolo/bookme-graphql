@@ -15,6 +15,7 @@ type Booking {
   end: DateTime!
   roomId: Int!
   room: Room!
+  userId: Int!
   user: User!
 }
 
@@ -57,6 +58,7 @@ input CreateBookingInput {
   start: DateTime!
   end: DateTime!
   roomId: Float!
+  userId: Float!
 }
 
 input UpdateBookingInput {
@@ -64,16 +66,15 @@ input UpdateBookingInput {
   start: DateTime
   end: DateTime
   roomId: Float
+  userId: Float
   id: Float!
 }
 
 input CreateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  name: String!
 }
 
 input UpdateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  name: String
   id: Int!
 }

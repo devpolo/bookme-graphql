@@ -7,9 +7,10 @@ import { BookingResolver } from './booking.resolver';
 import { Booking } from './entities/booking.entity';
 
 import { RoomsModule } from 'src/room/room.module';
+import { UserModule } from 'src/user/user.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Booking]), RoomsModule],
+  imports: [TypeOrmModule.forFeature([Booking]), RoomsModule, UserModule],
   providers: [BookingService, BookingResolver],
 })
 export class BookingModule {}

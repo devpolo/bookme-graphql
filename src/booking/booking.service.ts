@@ -8,12 +8,14 @@ import { UpdateBookingInput } from './dto/update-booking.input';
 import { Booking } from './entities/booking.entity';
 
 import { RoomsService } from 'src/room/room.service';
+import { UserService } from 'src/user/user.service';
 
 @Injectable()
 export class BookingService {
   constructor(
     @InjectRepository(Booking) private bookingRepository: Repository<Booking>,
     private roomsService: RoomsService,
+    private userService: UserService,
   ) {}
 
   create(createBookingInput: CreateBookingInput) {
@@ -39,5 +41,9 @@ export class BookingService {
 
   getRoom(bookingId: number) {
     return this.roomsService.findOne(bookingId);
+  }
+
+  getUser(userId: number) {
+    return this.userService.findOne(userId);
   }
 }
