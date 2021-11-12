@@ -2,6 +2,12 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type User {
+  id: Int!
+  name: String!
+  bookings: [Booking!]
+}
+
 type Booking {
   id: Int!
   title: String!
@@ -9,6 +15,7 @@ type Booking {
   end: DateTime!
   roomId: Int!
   room: Room!
+  user: User!
 }
 
 """
@@ -20,11 +27,6 @@ type Room {
   id: Int!
   name: String!
   bookings: [Booking!]
-}
-
-type User {
-  id: Int!
-  name: String!
 }
 
 type Query {
