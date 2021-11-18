@@ -24,18 +24,18 @@ export class Booking {
   end: Date;
 
   @Column()
-  @Field((type) => Int, { nullable: true })
-  roomId?: number;
+  @Field((type) => Int)
+  roomId: number;
 
   @ManyToOne(() => Room, (room) => room.bookings, { onDelete: 'CASCADE' })
-  @Field((type) => Room, { nullable: true })
-  room?: Room;
+  @Field((type) => Room)
+  room: Room;
 
   @Column()
-  @Field((type) => Int, { nullable: true })
-  userId?: number;
+  @Field((type) => Int)
+  userId: number;
 
   @ManyToOne(() => User, (user) => user.bookings, { onDelete: 'CASCADE' })
-  @Field((type) => User, { nullable: true })
-  user?: User;
+  @Field((type) => User)
+  user: User;
 }

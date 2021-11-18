@@ -39,11 +39,13 @@ export class BookingService {
       if (updateBookingInput.userId === booking.userId) {
         this.bookingRepository.update(updateBookingInput.userId, updateBookingInput);
 
+        const { id: idToRemove, ...data } = updateBookingInput;
+
         await this.bookingRepository.update(id, {
-          ...updateBookingInput,
+          ...data,
         });
 
-        return this.bookingRepository.findOne(updateBookingInput.userId);
+        return this.bookingRepository.findOneOrFail(id);
       } else {
         throw new UnauthorizedException('Not authorized');
       }
@@ -55,9 +57,9 @@ export class BookingService {
   async remove(deleteBookingInput: DeleteBookingInput) {
     try {
       const booking = await this.bookingRepository.findOneOrFail(deleteBookingInput.id);
-
       if (deleteBookingInput.userId === booking.userId) {
-        return this.bookingRepository.delete(deleteBookingInput.id);
+        this.bookingRepository.delete(deleteBookingInput.id);
+        return true;
       } else {
         throw new UnauthorizedException('Not authorized');
       }

@@ -5,7 +5,7 @@
 type User {
   id: Int!
   name: String!
-  bookings: [Booking!]
+  bookings: [Booking!]!
 }
 
 type Booking {
@@ -13,10 +13,10 @@ type Booking {
   title: String!
   start: DateTime!
   end: DateTime!
-  roomId: Int
-  room: Room
-  userId: Int
-  user: User
+  roomId: Int!
+  room: Room!
+  userId: Int!
+  user: User!
 }
 
 """
@@ -27,7 +27,7 @@ scalar DateTime
 type Room {
   id: Int!
   title: String!
-  bookings: [Booking!]
+  bookings: [Booking!]!
 }
 
 type Query {
