@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -33,38 +33,30 @@ export class BookingService {
   }
 
   async update(id: number, updateBookingInput: UpdateBookingInput) {
-    try {
-      const booking = await this.bookingRepository.findOneOrFail(id);
+    const booking = await this.bookingRepository.findOneOrFail(id);
 
-      if (updateBookingInput.userId === booking.userId) {
-        this.bookingRepository.update(updateBookingInput.userId, updateBookingInput);
+    if (updateBookingInput.userId === booking.userId) {
+      this.bookingRepository.update(updateBookingInput.userId, updateBookingInput);
 
-        const { id: idToRemove, ...data } = updateBookingInput;
+      const { id: idToRemove, ...data } = updateBookingInput;
 
-        await this.bookingRepository.update(id, {
-          ...data,
-        });
+      await this.bookingRepository.update(id, {
+        ...data,
+      });
 
-        return this.bookingRepository.findOneOrFail(id);
-      } else {
-        throw new UnauthorizedException('Not authorized');
-      }
-    } catch (error) {
-      console.error(error);
+      return this.bookingRepository.findOneOrFail(id);
+    } else {
+      return null;
     }
   }
 
   async remove(deleteBookingInput: DeleteBookingInput) {
-    try {
-      const booking = await this.bookingRepository.findOneOrFail(deleteBookingInput.id);
-      if (deleteBookingInput.userId === booking.userId) {
-        this.bookingRepository.delete(deleteBookingInput.id);
-        return true;
-      } else {
-        throw new UnauthorizedException('Not authorized');
-      }
-    } catch (error) {
-      console.error(error);
+    const booking = await this.bookingRepository.findOneOrFail(deleteBookingInput.id);
+    if (deleteBookingInput.userId === booking.userId) {
+      await this.bookingRepository.delete(deleteBookingInput.id);
+      return true;
+    } else {
+      return false;
     }
   }
 

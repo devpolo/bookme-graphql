@@ -10,6 +10,7 @@ import { UpdateBookingInput } from './dto/update-booking.input';
 import { Room } from 'src/room/entities/room.entity';
 import { User } from 'src/user/entities/user.entity';
 import { DeleteBookingInput } from './dto/delete-booking.input';
+import { UserInputError } from 'apollo-server-errors';
 
 @Resolver(() => Booking)
 export class BookingResolver {
@@ -31,13 +32,26 @@ export class BookingResolver {
   }
 
   @Mutation(() => Booking)
-  updateBooking(@Args('updateBookingInput') updateBookingInput: UpdateBookingInput) {
-    return this.bookingService.update(updateBookingInput.id, updateBookingInput);
+  async updateBooking(@Args('updateBookingInput') updateBookingInput: UpdateBookingInput) {
+    const updatedBooking = await this.bookingService.update(
+      updateBookingInput.id,
+      updateBookingInput,
+    );
+    if (updatedBooking) {
+      return updatedBooking;
+    } else {
+      throw new UserInputError('Not authorized');
+    }
   }
 
   @Mutation(() => Boolean)
   async removeBooking(@Args('DeleteBookingInput') deleteBookingInput: DeleteBookingInput) {
-    return (await this.bookingService.remove(deleteBookingInput)) ? true : false;
+    const success = await this.bookingService.remove(deleteBookingInput);
+    if (success) {
+      return true;
+    } else {
+      throw new UserInputError('Not authorized');
+    }
   }
 
   @ResolveField((returns) => Room)
