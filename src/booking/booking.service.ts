@@ -10,6 +10,7 @@ import { Booking } from './entities/booking.entity';
 import { RoomsService } from 'src/room/room.service';
 import { UserService } from 'src/user/user.service';
 import { DeleteBookingInput } from './dto/delete-booking.input';
+import { areIntervalsOverlapping } from 'date-fns';
 
 @Injectable()
 export class BookingService {
@@ -58,6 +59,19 @@ export class BookingService {
     } else {
       return false;
     }
+  }
+
+  async isOverlapping(input: CreateBookingInput | UpdateBookingInput) {
+    const bookingsByRoomId = await this.bookingRepository.find({ where: { roomId: input.roomId } });
+
+    bookingsByRoomId.forEach((booking) => {
+      const isOverlapping = areIntervalsOverlapping(
+        { start: new Date(booking.start), end: new Date(booking.end) },
+        { start: new Date(input.start), end: new Date(input.end) },
+      );
+
+      if (isOverlapping) throw new Error('Meeting room already booked');
+    });
   }
 
   getRoom(bookingId: number) {

@@ -27,7 +27,12 @@ export class BookingResolver {
   }
 
   @Mutation(() => Booking)
-  createBooking(@Args('createBookingInput') createBookingInput: CreateBookingInput) {
+  async createBooking(@Args('createBookingInput') createBookingInput: CreateBookingInput) {
+    try {
+      await this.bookingService.isOverlapping(createBookingInput);
+    } catch (error) {
+      throw new UserInputError(error.message);
+    }
     return this.bookingService.create(createBookingInput);
   }
 
